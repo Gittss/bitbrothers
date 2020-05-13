@@ -1,20 +1,19 @@
 const express=require('express')
-const exphand=require('express-handlebars')
 const path=require('path')
 const bodyparser=require('body-parser')
 const control=require('./controller/control')
+const cors=require('cors')
 require('dotenv')
 require('./models/db')
 
 var PORT=process.env.PORT || 3000
+var corsOptions = { origin: "http://localhost:8081" };
 
 var app=express()
 
+app.use(cors(corsOptions))
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(bodyparser.json())
-app.set('views',path.join(__dirname,'/views/'))
-app.engine('hbs',exphand({extname:'hbs', layoutsDir:__dirname+'/views/layouts/', defaultLayout:'mainlayout'}))
-app.set('view engine','hbs')
 
 app.listen(PORT,()=>{
     console.log('express server started at port '+PORT)
