@@ -1,0 +1,31 @@
+<div class="main">
+    <h3>User List</h3>
+    <a class="button" href="/"><i class="fa fa-plus"></i> Create new user</a>
+    <div class="new">
+        <table>
+            {{#if list}}
+            <thread>
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile no.</th>
+                    <th></th>
+                </tr>
+            </thread>
+            <tbody>
+                {{#each list}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.number}}</td>
+                    <td><a class="button" href="/api/users/{{this._id}}"><i class="fa fa-pencil"></i>  edit</a></td>
+                    <td><a class="button" href="/api/users/delete/{{this._id}}" onclick="return confirm('Delete this record?');"><i class="fa fa-trash"></i>  delete</a></td>
+                </tr>
+                {{/each}}
+            </tbody >
+            {{else}}
+                <div class="new">
+                    No User exist
+                </div>
+            {{/if}}
+        </table>
+    </div>
+</div>
